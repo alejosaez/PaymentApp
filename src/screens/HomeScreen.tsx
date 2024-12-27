@@ -7,14 +7,15 @@ import {
   TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import { GLOBAL_STYLES } from '../style/AppStyles';
-import { Category, Product } from '../types/types';
+import {GLOBAL_STYLES} from '../style/AppStyles';
+import {Category, Product} from '../types/types';
+import ProductCard from '../components/ProductCard';
 
 const HomeScreen = () => {
   const categories: Category[] = [
-    { id: '1', name: 'Proteínas', image: 'https://via.placeholder.com/100' },
-    { id: '2', name: 'Vitaminas', image: 'https://via.placeholder.com/100' },
-    { id: '3', name: 'Energizantes', image: 'https://via.placeholder.com/100' },
+    {id: '1', name: 'Proteínas', image: 'https://via.placeholder.com/100'},
+    {id: '2', name: 'Vitaminas', image: 'https://via.placeholder.com/100'},
+    {id: '3', name: 'Energizantes', image: 'https://via.placeholder.com/100'},
   ];
 
   const products: Product[] = [
@@ -44,22 +45,15 @@ const HomeScreen = () => {
     },
   ];
 
-  const renderCategory = ({ item }: { item: Category }) => (
+  const renderCategory = ({item}: {item: Category}) => (
     <TouchableOpacity style={GLOBAL_STYLES.categoryCard}>
-      <Image source={{ uri: item.image }} style={GLOBAL_STYLES.categoryImage} />
+      <Image source={{uri: item.image}} style={GLOBAL_STYLES.categoryImage} />
       <Text style={GLOBAL_STYLES.categoryText}>{item.name}</Text>
     </TouchableOpacity>
   );
 
-  const renderProduct = ({ item }: { item: Product }) => (
-    <TouchableOpacity style={GLOBAL_STYLES.productCard}>
-      <Image source={{ uri: item.image }} style={GLOBAL_STYLES.productImage} />
-      <Text style={GLOBAL_STYLES.productName}>{item.name}</Text>
-      <Text style={GLOBAL_STYLES.productPrice}>${item.price}</Text>
-      <TouchableOpacity style={GLOBAL_STYLES.addToCartButton}>
-        <Text style={GLOBAL_STYLES.addToCartButtonText}>Agregar al Carrito</Text>
-      </TouchableOpacity>
-    </TouchableOpacity>
+  const renderProduct = ({item}: {item: Product}) => (
+    <ProductCard product={item} />
   );
 
   return (
@@ -70,7 +64,7 @@ const HomeScreen = () => {
 
       <View style={GLOBAL_STYLES.banner}>
         <Image
-          source={{ uri: 'https://via.placeholder.com/600x300' }}
+          source={{uri: 'https://via.placeholder.com/600x300'}}
           style={GLOBAL_STYLES.bannerImage}
         />
       </View>
@@ -79,7 +73,7 @@ const HomeScreen = () => {
       <FlatList
         data={categories}
         renderItem={renderCategory}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         horizontal
         showsHorizontalScrollIndicator={false}
       />
@@ -88,7 +82,7 @@ const HomeScreen = () => {
       <FlatList
         data={products}
         renderItem={renderProduct}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         numColumns={2}
       />
     </ScrollView>

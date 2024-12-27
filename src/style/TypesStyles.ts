@@ -22,6 +22,6 @@ export interface GlobalStyles {
   productPrice: TextStyle;
   addToCartButton: ViewStyle;
   addToCartButtonText: TextStyle
-  bannerImage:ViewStyle
+  bannerImage:ImageStyle;
   categoryList: ViewStyle;
 }
